@@ -9,6 +9,12 @@ BUILDS_ZIP_PATH = dst_path / "data/databundles/anim_dynamic.zip"
 TEX_PATH = dst_path / "data/anim/dynamic"
 ANIM_PATH = dst_path / "data/anim/accountitem_frame.zip"
 
+def normalize_title(s: str) -> str:
+    s = s.replace('_', ' ')
+    if s.startswith('File:'):
+        s = '文件:' + s[5:6].upper() + s[6:]
+    return s
+exist = {image.name for image in site.allimages()}
 skin_names = []
 for address in ['Item', 'Player', 'Other']:
     pagedata = json.loads(site.pages[f"Data:DST Skins {address}.tabx"].text())
@@ -21,7 +27,7 @@ for address in ['Item', 'Player', 'Other']:
     icons = [line[icon_idx]
              for line in pagedata['data'] if line[blacklist_idx] == 'n/a']
     for icon in tqdm(icons):
-        if not site.pages[icon].exists:
+        if not normalize_title(icon) in exist and not site.pages[icon].exists: # 后者处理重定向
             skin_names.append(icon.replace(
                 'File:', '').replace('_icon.png', ''))
 
