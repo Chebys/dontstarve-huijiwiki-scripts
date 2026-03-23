@@ -42,32 +42,13 @@ def get_pages(template=None, category=None):
         return list(site.pages['Template:' + template].embeddedin())
     elif category:
         return list(site.categories[category])
-    return []
+    return list(site.allpages())
 
 def get_param(template, index, default=''):
     try:
         return str(template.get(index).value).strip()
     except ValueError:
         return default
-
-def repl():
-    replacements = {
-        '大漩涡': '巨型漩涡',
-        '遗物复制品 碗': '仿制遗物碗',
-        '遗物复制品 椅子': '仿制遗物椅子',
-        '遗物复制品 盘子': '仿制遗物盘子',
-        '遗物复制品 碟子': '仿制遗物碟子',
-        '遗物复制品 桌子': '仿制遗物桌子',
-        '遗物复制品': '仿制遗物花瓶',
-        '损毁的废墟': '破损遗物'
-    }
-    for page in tqdm(get_pages(category="联机版")):
-        text = page.text()
-        newtext = text
-        for old, new in replacements.items():
-            newtext = newtext.replace(old, new)
-        if newtext != text:
-            page.save(newtext, summary='批量替换文本')
 
 if __name__ == '__main__':
     print('不要直接运行这个文件，要更新哪些数据就去运行对应的脚本。')
