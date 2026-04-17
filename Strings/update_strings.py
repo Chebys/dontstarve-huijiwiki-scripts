@@ -154,7 +154,7 @@ if VER == "DST":
 
 exist = {page.name for page in site.allpages()}
 need = {line[0]: f"<tr><td>{line[0]}</td><td>[[{line[1]}]]</td></tr>" for line in tqdm(
-    new_itemtable) if not line[1] in exist and not '{' in line[1] and not r'%s' in line[1] and not r'\n' in line[1]}
+    new_itemtable) if not line[1] in exist and not '{' in line[1] and not r'%s' in line[1] and not r'\n' in line[1] and line[1]!='???'}
 pagetext = f"""\
 从 chinese_s.po 的 STRING.NAMES 中自动提取的全部缺失页面，含有废弃的prefab及其翻译（例如：anchor_sketch），因此不代表其中的每个页面都需要创建。
 <table class="wikitable sortable mw-collapsible mw-collapsed">
