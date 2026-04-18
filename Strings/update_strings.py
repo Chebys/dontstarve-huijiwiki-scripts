@@ -90,7 +90,7 @@ for e in po:
         pid = p[2].lower()
         img = id_to_img.get(pid, f"{en2}.png")
         new_itemtable.append([pid, cn2, en2, img])
-        continue
+        # continue
 
     if p[1] == "CHARACTERS" and len(p) >= 4:
         ch = p[2].lower()
