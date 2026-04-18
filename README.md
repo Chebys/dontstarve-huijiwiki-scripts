@@ -58,6 +58,7 @@ from main import *
 | `Maintenance/*`       | 维基日常维护相关                                  |
 | `Prefab/*`            | 实体信息框/自动所需的实体数据更新                  |
 | `Prefab History/*`    | 实体加入版本数据更新                              |
+| `Prefab Overrides/*`  | 部分实体检查名数据更新                            |
 | `Recipes/*`           | 配方数据更新                                      |
 | `Skilltree/*`         | 技能树数据更新                                    |
 | `Skins/*`             | 皮肤数据更新                                      |
